@@ -18,6 +18,7 @@
   
 ## Cài đặt
 ### Cài đặt Wazuh server:
+#### Cài đặt Wazuh manager
 - Chuyển vào chế độ user root.
 - Cài đặt các công cụ phát triển và trình biên dịch bằng lệnh:
 ```
@@ -72,7 +73,7 @@ Wazuh-manager đã hoạt động:
 
 ![image](https://user-images.githubusercontent.com/41882267/92078814-1ee97280-ede9-11ea-9ebc-beea1bd2e7b6.png)
 
-### Cài đặt Wazuh API
+#### Cài đặt Wazuh API
 
 - Cài đặt NodeJS bằng lệnh:
 ```
@@ -92,7 +93,7 @@ systemctl status wazuh-api
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92090251-67a92780-edf9-11ea-99a3-9bf65293152d.png)
 
-### Cài đặt Filebeat
+#### Cài đặt Filebeat
 - Thêm vào Elastic repository và GPG key của nó bằng các lệnh:
 ```
 apt-get install curl apt-transport-https
@@ -224,6 +225,24 @@ systemctl start kibana.service
 - Chờ 5 đến 10 phút để Kibana hoàn toàn được bật lên. Truy cập vào địa chỉ http://192.168.182.160:5601 với 192.168.182.160 là địa chỉ ip của Wazuh-server để kiểm tra.
 
 ![image](https://user-images.githubusercontent.com/41882267/92096342-f79e9f80-ee00-11ea-80b2-cb126ddbabe2.png)
+
+### Cài đặt Monitored endpoint:
+
+- Từ menu bên trái http://192.168.182.160:5601, chọn Wazuh, sau đó chon Total agents và nhập như sau:
+
+![image](https://user-images.githubusercontent.com/41882267/92102997-8e6f5a00-ee09-11ea-888a-1666672d1c56.png)
+![image](https://user-images.githubusercontent.com/41882267/92103052-a050fd00-ee09-11ea-91b8-e3da9f392295.png)
+
+- Copy command để cài đặt trên máy ảo monitored endpoint:
+```
+curl -so wazuh-agent.deb https://packages.wazuh.com/3.x/apt/pool/main/w/wazuh-agent/wazuh-agent_3.13.1-1_amd64.deb && sudo WAZUH_MANAGER='192.168.182.160' dpkg -i ./wazuh-agent.deb
+```
+![image](https://user-images.githubusercontent.com/41882267/92103316-fb82ef80-ee09-11ea-9deb-bfbac3452ff6.png)
+
+- Ngay lập tức Wazuh server đã nhận ra agent:
+
+![image](https://user-images.githubusercontent.com/41882267/92103498-4270e500-ee0a-11ea-99fd-7002e0232b9e.png)
+![image](https://user-images.githubusercontent.com/41882267/92103537-4ac92000-ee0a-11ea-978e-9c78a4ddfbb7.png)
 
 
 
