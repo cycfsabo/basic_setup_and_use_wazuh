@@ -4,7 +4,7 @@
 ![image](https://user-images.githubusercontent.com/41882267/92073650-6e767100-edde-11ea-9e45-cd389af44b5b.png)
 
 ### Sử dụng Splunk:
-![image](https://user-images.githubusercontent.com/41882267/92312345-f7adc380-efe9-11ea-8de6-72d0eac0d1c2.png)
+![image](https://user-images.githubusercontent.com/41882267/92312408-70148480-efea-11ea-9fed-1d71a4d88d2b.png)
 
 
 Để thực hiện như mô hình, chuẩn bị 2 máy ảo trên VMWare:
