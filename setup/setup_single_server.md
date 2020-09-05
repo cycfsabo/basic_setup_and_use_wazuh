@@ -314,6 +314,54 @@ curl -o SplunkAppForWazuh.tar.gz https://packages.wazuh.com/3.x/splunkapp/wazuha
 ![image](https://user-images.githubusercontent.com/41882267/92311614-bbc33000-efe2-11ea-9fb9-9f1db06b8f65.png)
 
 
+- Kết nối đến Wazuh API như sau:
+![image](https://user-images.githubusercontent.com/41882267/92311889-7f450380-efe5-11ea-86b6-9cadd93cf4bd.png)
+![image](https://user-images.githubusercontent.com/41882267/92311897-94ba2d80-efe5-11ea-8f11-41c7baf4d704.png)
 
+#### Cài đặt và cấu hình Splunk Forwarder:
 
+- Chuyển qua máy ảo Wazuh Server. 
+- Tải về Splunk Forwarder v8.0.5 package từ trang chủ.
+- Cài đặt Splunk Forwarder bằng lệnh:
+```
+dpkg --install splunkforwarder-8.0.5-a1a6394cc5ae-linux-2.6-amd64.deb 
+```
+![image](https://user-images.githubusercontent.com/41882267/92312022-25453d80-efe7-11ea-81b1-450893a84f13.png)
+
+- Download and insert the props.conf template:
+```
+curl -so /opt/splunkforwarder/etc/system/local/props.conf https://raw.githubusercontent.com/wazuh/wazuh/v3.13.1/extensions/splunk/props.conf
+```
+- Download and insert the inputs.conf template:
+```
+curl -so /opt/splunkforwarder/etc/system/local/inputs.conf https://raw.githubusercontent.com/wazuh/wazuh/v3.13.1/extensions/splunk/inputs.conf
+```
+- Set Wazuh manager hostname:
+```
+sed -i "s:MANAGER_HOSTNAME:$(hostname):g" /opt/splunkforwarder/etc/system/local/inputs.conf
+```
+
+- Point Forwarder xuất ra Wazuh’s Splunk Indexer bằng lệnh sau:
+```
+/opt/splunkforwarder/bin/splunk add forward-server 192.168.182.162:9997
+```
+Chọn y và nhập vào username: hungcao / password: 12345678
+
+![image](https://user-images.githubusercontent.com/41882267/92312122-10b57500-efe8-11ea-9589-404e96afc977.png)
+
+- Restart Splunk Forwarder service:
+```
+/opt/splunkforwarder/bin/splunk restart
+```
+![image](https://user-images.githubusercontent.com/41882267/92312150-5114f300-efe8-11ea-8c57-62a9614fc1e1.png)
+
+- Để bật Splunk Forwarder khi khởi động, sử dụng lệnh:
+```
+/opt/splunkforwarder/bin/splunk enable boot-start
+```
+![image](https://user-images.githubusercontent.com/41882267/92312150-5114f300-efe8-11ea-8c57-62a9614fc1e1.png)
+
+- Vào trở lại địa chỉ http://192.168.182.162:8000/, vào Wazuh app > Agents > Security events và xem kết quả:
+
+![image](https://user-images.githubusercontent.com/41882267/92312333-dbaa2200-efe9-11ea-8783-c74ec4e5e9cb.png)
 
