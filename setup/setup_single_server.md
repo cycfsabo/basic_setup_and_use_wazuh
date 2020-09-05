@@ -246,6 +246,74 @@ curl -so wazuh-agent.deb https://packages.wazuh.com/3.x/apt/pool/main/w/wazuh-ag
 
 
 
+### Cài đặt Splunk (Single-node)
+#### Cài đặt Splunk Indexer
+
+- Download Splunk v8.0.4 package từ trang chủ.
+
+![image](https://user-images.githubusercontent.com/41882267/92311266-dd6ee800-efdf-11ea-8b1a-b2ed40cfa0fe.png)
+
+- Chuyển qua user root.
+- Cài đặt Splunk v8.0.6 package bằng lệnh:
+```
+dpkg --install splunk-8.0.6-152fb4b2bb96-linux-2.6-amd64.deb 
+```
+![image](https://user-images.githubusercontent.com/41882267/92311358-7b62b280-efe0-11ea-8489-0be9e9e1f35b.png)
+
+- Tạo file inputs.conf:
+```
+curl -so /opt/splunk/etc/system/local/indexes.conf https://raw.githubusercontent.com/wazuh/wazuh/v3.13.1/extensions/splunk/peer-indexes.conf
+```
+- Tạo file ìnputs.conf:
+```
+curl -so /opt/splunk/etc/system/local/inputs.conf https://raw.githubusercontent.com/wazuh/wazuh/v3.13.1/extensions/splunk/peer-inputs.conf
+```
+- Chắc chắn rằng Splunk v8.0.4 được cài đặt ở /opt/splunk và start the service:
+```
+/opt/splunk/bin/splunk start
+```
+![image](https://user-images.githubusercontent.com/41882267/92311413-004dcc00-efe1-11ea-8587-8e9da5a14269.png)
+
+Nhập y
+Sau đó nhập admin username: hungcao / password: 12345678
+
+![image](https://user-images.githubusercontent.com/41882267/92311458-64709000-efe1-11ea-9cf8-55f763841a7d.png)
+
+Vào địa chỉ http://192.168.182.162:8000/ với 192.168.182.162 là địa chỉ ip của máy ảo để kiểm tra:
+![image](https://user-images.githubusercontent.com/41882267/92311506-c29d7300-efe1-11ea-9b60-98b261fe6e34.png)
+
+
+- Để bật Splunk khi khởi động, sử dụng lệnh:
+```
+/opt/splunk/bin/splunk enable boot-start
+```
+![image](https://user-images.githubusercontent.com/41882267/92311470-794d2380-efe1-11ea-9bda-7254ea1b3c75.png)
+
+
+#### Cài đặt Wazuh app cho Splunk:
+
+- Tải xuống phiên bản Wazuh app mới nhất cho Splunk:
+```
+curl -o SplunkAppForWazuh.tar.gz https://packages.wazuh.com/3.x/splunkapp/wazuhapp-splunk-3.13.1_8.0.4.tar.gz
+```
+
+- Cài đặt Wazuh app cho Splunk:
+```
+/opt/splunk/bin/splunk install app SplunkAppForWazuh.tar.gz
+```
+![image](https://user-images.githubusercontent.com/41882267/92311581-6dae2c80-efe2-11ea-941d-4e0d2096b940.png)
+
+- Restart Splunk Server:
+```
+/opt/splunk/bin/splunk restart
+```
+![image](https://user-images.githubusercontent.com/41882267/92311595-96cebd00-efe2-11ea-9b20-6f4c72aca121.png)
+
+- Vào lại Splunk trên trình duyệt để kiểm tra:
+
+![image](https://user-images.githubusercontent.com/41882267/92311614-bbc33000-efe2-11ea-9fb9-9f1db06b8f65.png)
+
+
 
 
 
