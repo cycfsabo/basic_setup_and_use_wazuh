@@ -1,18 +1,29 @@
 # Cài đặt cơ bản wazuh với mô hình 1 server
 ## Mô hình triển khai
+### Không sử dụng Splunk:
 ![image](https://user-images.githubusercontent.com/41882267/92073650-6e767100-edde-11ea-9e45-cd389af44b5b.png)
+
+### Sử dụng Splunk:
+![image](https://user-images.githubusercontent.com/41882267/92312345-f7adc380-efe9-11ea-8de6-72d0eac0d1c2.png)
+
 
 Để thực hiện như mô hình, chuẩn bị 2 máy ảo trên VMWare:
 - Wazuh server:
   OS: Ubuntu server 18.04
   CPU: 2 core
-  Ram: 4gb
+  Ram: 2.5gb
   Hard disk: 40gb
   Network interface card: NAT
 - Monitored endpoint:
   OS: Ubuntu server 18.04
   CPU: 2 core
   Ram: 2gb
+  Hard disk: 20gb
+  Network interface card: NAT
+- Splunk Indexer:
+  OS: Ubuntu server 18.04
+  CPU: 2 core
+  Ram: 2.5gb
   Hard disk: 20gb
   Network interface card: NAT
   
@@ -328,11 +339,11 @@ dpkg --install splunkforwarder-8.0.5-a1a6394cc5ae-linux-2.6-amd64.deb
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92312022-25453d80-efe7-11ea-81b1-450893a84f13.png)
 
-- Download and insert the props.conf template:
+- Tải xuống và chèn vào the props.conf template:
 ```
 curl -so /opt/splunkforwarder/etc/system/local/props.conf https://raw.githubusercontent.com/wazuh/wazuh/v3.13.1/extensions/splunk/props.conf
 ```
-- Download and insert the inputs.conf template:
+- Download và chèn vào inputs.conf template:
 ```
 curl -so /opt/splunkforwarder/etc/system/local/inputs.conf https://raw.githubusercontent.com/wazuh/wazuh/v3.13.1/extensions/splunk/inputs.conf
 ```
