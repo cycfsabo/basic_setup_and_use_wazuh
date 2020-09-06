@@ -378,15 +378,82 @@ Chọn y và nhập vào username: hungcao / password: 12345678
 
 ## Use cases:
 ### Phát hiện SSH brute-force attack:
+#### Tấn công
 - Thực hiện ssh vào Wazuh agent với 1 user không tồn tại bằng lệnh:
 ```
 ssh abc@192.168.182.161
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92318877-8d723e80-f03c-11ea-830b-6099ab13470e.png)
 
+#### Ở Wazuh server
 - Wazuh server sẽ lập tức ghi nhận:
 
 ![image](https://user-images.githubusercontent.com/41882267/92318899-be527380-f03c-11ea-9a0d-690143f20d58.png)
+
+#### Ở Kibana:
+- Vào Kibana > Discover và search "abc" trong wazuh alert cũng sẽ thấy có cảnh báo:
+
+![image](https://user-images.githubusercontent.com/41882267/92320084-f495f000-f048-11ea-8c2b-5336b074c076.png)
+
+{
+### Phát hiện các tiến trình ẩn:
+#### Tạo tiến trình ẩn
+Trong bài thực hành này, tôi sẽ triển khai một cách an toàn rootkit chế độ hạt nhân trên máy lab của mình để phát hiện Wazuh phát hiện.
+- Thực hiện các lệnh sau:
+```
+echo "syscheck.debug=2" > /var/ossec/etc/local_internal_options.conf
+echo "agent.debug=2" >> /var/ossec/etc/local_internal_options.conf
+echo "rootcheck.sleep=0" >> /var/ossec/etc/local_internal_options.conf
+echo "syscheck.sleep=0" >> /var/ossec/etc/local_internal_options.conf
+systemctl restart wazuh-agent
+```
+- Cài đặt gcc, Kernel Headers, libgcc-7-dev:
+```
+apt install gcc
+apt install linux-headers-$(uname -r)
+apt-get install -y libgcc-7-dev
+```
+- Tải về rootkit bằng lệnh:
+```
+git clone https://github.com/wazuh/Diamorphine.git
+```
+- Vào folder Diamorphine và compile:
+```
+cd Diamorphine
+make
+```
+}
+
+
+### Thay đổi rule:
+- Vào Wazuh trên Kibana, vào Management, chọn Rules
+
+![image](https://user-images.githubusercontent.com/41882267/92321440-2b253800-f054-11ea-824d-9c325a7955bc.png)
+
+- Chọn Manage rules file, sau đó search sshd và xem file 0095-sshd_rules.xml:
+![image](https://user-images.githubusercontent.com/41882267/92321499-bdc5d700-f054-11ea-834c-a5351a520a67.png)
+
+- Xuống Rule id 5716 và copy từ <rule> đến </rule>
+
+![image](https://user-images.githubusercontent.com/41882267/92321540-109f8e80-f055-11ea-9540-4e306109b6ca.png)
+
+- Chọn Custom rules để hiện ra file local_rules.xml:
+
+![image](https://user-images.githubusercontent.com/41882267/92321772-dc2cd200-f056-11ea-8752-8f9c50c42ddd.png)
+
+- Paste đoạn bên trên vào file local_rules.xml ở trong tag group mới, sau đó thêm overwrite="yes" vào tag rule, sửa rule level và nhấn Save:
+
+![image](https://user-images.githubusercontent.com/41882267/92321833-6117eb80-f057-11ea-9a07-fd82cbe47b9d.png)
+
+- Chọn Restart now sau đó chọn Confirm:
+
+![image](https://user-images.githubusercontent.com/41882267/92321854-899fe580-f057-11ea-8b69-45177bd44600.png)
+
+
+- Thực hiện SSH với username đúng nhưng password sai vào Agent và kiểm tra log ở Kibana:
+![image](https://user-images.githubusercontent.com/41882267/92323205-02576f80-f061-11ea-8362-1f5396a24ebb.png)
+
+
 
 
 
