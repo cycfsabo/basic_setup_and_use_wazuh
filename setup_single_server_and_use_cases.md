@@ -412,35 +412,6 @@ ssh abc@192.168.182.161
 
 ![image](https://user-images.githubusercontent.com/41882267/92320084-f495f000-f048-11ea-8c2b-5336b074c076.png)
 
-{
-### Phát hiện các tiến trình ẩn:
-#### Tạo tiến trình ẩn
-Trong bài thực hành này, tôi sẽ triển khai một cách an toàn rootkit chế độ hạt nhân trên máy lab của mình để phát hiện Wazuh phát hiện.
-- Thực hiện các lệnh sau:
-```
-echo "syscheck.debug=2" > /var/ossec/etc/local_internal_options.conf
-echo "agent.debug=2" >> /var/ossec/etc/local_internal_options.conf
-echo "rootcheck.sleep=0" >> /var/ossec/etc/local_internal_options.conf
-echo "syscheck.sleep=0" >> /var/ossec/etc/local_internal_options.conf
-systemctl restart wazuh-agent
-```
-- Cài đặt gcc, Kernel Headers, libgcc-7-dev:
-```
-apt install gcc
-apt install linux-headers-$(uname -r)
-apt-get install -y libgcc-7-dev
-```
-- Tải về rootkit bằng lệnh:
-```
-git clone https://github.com/wazuh/Diamorphine.git
-```
-- Vào folder Diamorphine và compile:
-```
-cd Diamorphine
-make
-```
-}
-
 
 ### Thay đổi rule:
 - Vào Wazuh trên Kibana, vào Management, chọn Rules
