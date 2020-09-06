@@ -326,6 +326,7 @@ curl -o SplunkAppForWazuh.tar.gz https://packages.wazuh.com/3.x/splunkapp/wazuha
 
 
 - Kết nối đến Wazuh API như sau:
+
 ![image](https://user-images.githubusercontent.com/41882267/92311889-7f450380-efe5-11ea-86b6-9cadd93cf4bd.png)
 ![image](https://user-images.githubusercontent.com/41882267/92311897-94ba2d80-efe5-11ea-8f11-41c7baf4d704.png)
 
