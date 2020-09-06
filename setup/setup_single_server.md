@@ -7,7 +7,7 @@
 ![image](https://user-images.githubusercontent.com/41882267/92312408-70148480-efea-11ea-9fed-1d71a4d88d2b.png)
 
 
-Để thực hiện như mô hình, chuẩn bị 2 máy ảo trên VMWare:
+Để thực hiện như mô hình, chuẩn bị 3 máy ảo trên VMWare:
 - Wazuh server:
   OS: Ubuntu server 18.04
   CPU: 2 core
