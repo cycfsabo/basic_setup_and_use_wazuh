@@ -450,7 +450,7 @@ make
 ![image](https://user-images.githubusercontent.com/41882267/92321854-899fe580-f057-11ea-8b69-45177bd44600.png)
 
 
-- Thực hiện SSH với username đúng nhưng password sai vào Agent và kiểm tra log ở Kibana:
+- Thực hiện SSH với username đúng nhưng password sai vào Agent và kiểm tra log ở Kibana sẽ thấy log gần nhất có rule level là 7:
 ![image](https://user-images.githubusercontent.com/41882267/92323205-02576f80-f061-11ea-8362-1f5396a24ebb.png)
 
 
