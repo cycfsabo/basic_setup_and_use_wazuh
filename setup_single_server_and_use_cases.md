@@ -9,22 +9,39 @@
 
 Để thực hiện như mô hình, chuẩn bị 3 máy ảo trên VMWare:
 - Wazuh server:
+
   OS: Ubuntu server 18.04
+  
   CPU: 2 core
+  
   Ram: 2.5gb
+  
   Hard disk: 40gb
+  
   Network interface card: NAT
+  
 - Monitored endpoint:
+
   OS: Ubuntu server 18.04
+  
   CPU: 2 core
+  
   Ram: 2gb
+  
   Hard disk: 20gb
+  
   Network interface card: NAT
+
 - Splunk Indexer:
+  
   OS: Ubuntu server 18.04
+  
   CPU: 2 core
+  
   Ram: 2.5gb
+  
   Hard disk: 20gb
+  
   Network interface card: NAT
   
 ## Cài đặt
