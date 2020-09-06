@@ -256,7 +256,6 @@ curl -so wazuh-agent.deb https://packages.wazuh.com/3.x/apt/pool/main/w/wazuh-ag
 ![image](https://user-images.githubusercontent.com/41882267/92103537-4ac92000-ee0a-11ea-978e-9c78a4ddfbb7.png)
 
 
-
 ### Cài đặt Splunk (Single-node)
 #### Cài đặt Splunk Indexer
 
