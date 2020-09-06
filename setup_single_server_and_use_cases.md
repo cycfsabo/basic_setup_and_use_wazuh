@@ -441,6 +441,18 @@ ssh abc@192.168.182.161
 - Thực hiện SSH với username đúng nhưng password sai vào Agent và kiểm tra log ở Kibana sẽ thấy log gần nhất có rule level là 7:
 ![image](https://user-images.githubusercontent.com/41882267/92323205-02576f80-f061-11ea-8362-1f5396a24ebb.png)
 
+### Vượt qua tràn log:
+#### Cấu hình Wazuh agent client buffer trên linux-agent:
+- Ở lab này, ta sẽ giới hạn 50 EPS (events per second) để dễ dàng mô phỏng việc bị tràn log. Sửa file /var/ossec/etc/ossec.conf bằng lệnh và thêm vào đoạn như trong hình:
+```
+nano -c /var/ossec/etc/ossec.conf
+```
+![image](https://user-images.githubusercontent.com/41882267/92323671-bad2e280-f064-11ea-9769-eebb8fe715d3.png)
+
+- Restart Wazuh agent:
+```
+systemctl restart wazuh-agent
+```
 
 
 
