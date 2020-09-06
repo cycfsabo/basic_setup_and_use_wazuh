@@ -376,3 +376,17 @@ Chọn y và nhập vào username: hungcao / password: 12345678
 
 ![image](https://user-images.githubusercontent.com/41882267/92312333-dbaa2200-efe9-11ea-8783-c74ec4e5e9cb.png)
 
+## Use cases:
+### Phát hiện SSH brute-force attack:
+- Thực hiện ssh vào Wazuh agent với 1 user không tồn tại bằng lệnh:
+```
+ssh abc@192.168.182.161
+```
+![image](https://user-images.githubusercontent.com/41882267/92318877-8d723e80-f03c-11ea-830b-6099ab13470e.png)
+
+- Wazuh server sẽ lập tức ghi nhận:
+
+![image](https://user-images.githubusercontent.com/41882267/92318899-be527380-f03c-11ea-9a0d-690143f20d58.png)
+
+
+
