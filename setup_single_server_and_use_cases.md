@@ -485,7 +485,7 @@ makeflood
 
 - Chuyển qua Wazuh server theo dõi:
 
-![image](https://user-images.githubusercontent.com/41882267/92380129-cb518e80-f132-11ea-8b37-2fa76d21bfda.png)
+![image](https://user-images.githubusercontent.com/41882267/92380668-c93bff80-f133-11ea-8b7c-dbe22f0021dd.png)
 
 ![image](https://user-images.githubusercontent.com/41882267/92380353-4155f580-f133-11ea-89f2-c08109a57496.png)
 
