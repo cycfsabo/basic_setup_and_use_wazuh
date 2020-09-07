@@ -443,7 +443,7 @@ ssh abc@192.168.182.161
 
 ### Vượt qua tràn log:
 #### Cấu hình Wazuh agent client buffer trên linux-agent:
-- Ở lab này, ta sẽ giới hạn 50 EPS (events per second) để dễ dàng mô phỏng việc bị tràn log. Sửa file /var/ossec/etc/ossec.conf bằng lệnh và thêm vào đoạn như trong hình:
+- Ở lab này, ta sẽ giới hạn 50 EPS (events per second) để dễ dàng mô phỏng việc bị tràn log. Sửa file /var/ossec/etc/ossec.conf trên linux agent bằng lệnh và thêm vào đoạn như trong hình:
 ```
 nano -c /var/ossec/etc/ossec.conf
 ```
@@ -453,7 +453,32 @@ nano -c /var/ossec/etc/ossec.conf
 ```
 systemctl restart wazuh-agent
 ```
+#### Giảm mức cảnh báo log tối thiểu:
+- Sửa file /var/ossec/etc/ossec.conf ở Wazuh server (giảm <log_alert_level> từ 3 về 1):
+```
+nano -c /var/ossec/etc/ossec.conf
+```
+![image](https://user-images.githubusercontent.com/41882267/92323777-ae02be80-f065-11ea-9e95-15fcd7a990f0.png)
 
+- Restart Wazuh manager:
+```
+systemctl restart wazuh-manager
+```
 
+#### Generate a log flood on linux-agent
+
+- Cài đặt netcat trên Ubuntu bằng lệnh:
+```
+apt-get install netcat
+```
+- Tạo 1 script tên /usr/local/bin/makeflood với nội dung như sau:
+
+![image](https://user-images.githubusercontent.com/41882267/92323876-5b75d200-f066-11ea-938d-811353acb3fa.png)
+
+- Chạy script và sau đó chạy để tạo ra 1 rapid flood của 10,000 log entries.
+```
+chmod 700 /usr/local/bin/makeflood
+makeflood
+```
 
 
