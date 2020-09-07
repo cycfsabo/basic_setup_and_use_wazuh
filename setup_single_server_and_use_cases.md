@@ -469,7 +469,7 @@ systemctl restart wazuh-manager
 
 #### Tạo 1 log flood trên centos agent
 
-- Cài đặt netcat trên Ubuntu bằng lệnh:
+- Cài đặt netcat trên centos bằng lệnh:
 ```
 yum install nmap-ncat
 ```
