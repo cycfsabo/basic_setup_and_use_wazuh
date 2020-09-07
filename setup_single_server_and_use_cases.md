@@ -476,7 +476,7 @@ yum install nmap-ncat
 
 ![image](https://user-images.githubusercontent.com/41882267/92379676-0dc69b80-f132-11ea-98b6-5afa931b5653.png)
 
-- Chạy script và sau đó chạy để tạo ra 1 rapid flood của 10,000 log entries.
+- Chạy script và sau đó chạy để tạo ra 1 rapid flood của 10,000 log.
 ```
 chmod 700 /usr/local/bin/makeflood
 makeflood
@@ -486,7 +486,9 @@ makeflood
 - Chuyển qua Wazuh server theo dõi:
 
 ![image](https://user-images.githubusercontent.com/41882267/92380129-cb518e80-f132-11ea-8b37-2fa76d21bfda.png)
-![image](https://user-images.githubusercontent.com/41882267/92380150-d9071400-f132-11ea-879b-65f625b2bcb7.png)
+
+![image](https://user-images.githubusercontent.com/41882267/92380353-4155f580-f133-11ea-89f2-c08109a57496.png)
+
 
 
 
