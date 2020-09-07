@@ -3,10 +3,6 @@
 ### Không sử dụng Splunk:
 ![image](https://user-images.githubusercontent.com/41882267/92073650-6e767100-edde-11ea-9e45-cd389af44b5b.png)
 
-### Sử dụng Splunk:
-![image](https://user-images.githubusercontent.com/41882267/92312408-70148480-efea-11ea-9fed-1d71a4d88d2b.png)
-
-
 Để thực hiện như mô hình, chuẩn bị 3 máy ảo trên VMWare:
 - Wazuh server:
 
@@ -31,6 +27,11 @@
   Hard disk: 20gb
   
   Network interface card: NAT
+
+### Sử dụng Splunk:
+![image](https://user-images.githubusercontent.com/41882267/92312408-70148480-efea-11ea-9fed-1d71a4d88d2b.png)
+
+Để triển khai mô hình này, ngoài chuẩn bị 2 máy ảo như trên thì cần chuẩn bị thêm 1 máy ảo để chạy Splunk.
 
 - Splunk Indexer:
   
