@@ -443,6 +443,7 @@ ssh abc@192.168.182.161
 
 ### Vượt qua tràn log:
 #### Cấu hình Wazuh agent client buffer trên linux-agent:
+- Tạo một agent chạy centos để thực hiện ;ab.
 - Ở lab này, ta sẽ giới hạn 50 EPS (events per second) để dễ dàng mô phỏng việc bị tràn log. Sửa file /var/ossec/etc/ossec.conf trên linux agent bằng lệnh và thêm vào đoạn như trong hình:
 ```
 nano -c /var/ossec/etc/ossec.conf
@@ -469,16 +470,23 @@ systemctl restart wazuh-manager
 
 - Cài đặt netcat trên Ubuntu bằng lệnh:
 ```
-apt-get install netcat
+yum install nmap-ncat
 ```
 - Tạo 1 script tên /usr/local/bin/makeflood với nội dung như sau:
 
-![image](https://user-images.githubusercontent.com/41882267/92323876-5b75d200-f066-11ea-938d-811353acb3fa.png)
+![image](https://user-images.githubusercontent.com/41882267/92379676-0dc69b80-f132-11ea-98b6-5afa931b5653.png)
 
 - Chạy script và sau đó chạy để tạo ra 1 rapid flood của 10,000 log entries.
 ```
 chmod 700 /usr/local/bin/makeflood
 makeflood
 ```
+![image](https://user-images.githubusercontent.com/41882267/92379873-5da56280-f132-11ea-80cc-8805b0759050.png)
+
+- Chuyển qua Wazuh server theo dõi:
+
+![image](https://user-images.githubusercontent.com/41882267/92379977-904f5b00-f132-11ea-9d5c-316b6642b401.png)
+![image](https://user-images.githubusercontent.com/41882267/92380020-9d6c4a00-f132-11ea-9ecd-c35595e65c7a.png)
+
 
 
