@@ -3,7 +3,7 @@
 ### Không sử dụng Splunk:
 ![image](https://user-images.githubusercontent.com/41882267/92073650-6e767100-edde-11ea-9e45-cd389af44b5b.png)
 
-Để thực hiện như mô hình, chuẩn bị 3 máy ảo trên VMWare:
+Để thực hiện như mô hình, chuẩn bị 2 máy ảo trên VMWare:
 - Wazuh server:
 
   OS: Ubuntu server 18.04
