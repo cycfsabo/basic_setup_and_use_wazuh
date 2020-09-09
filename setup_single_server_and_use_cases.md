@@ -16,13 +16,13 @@
    1. [Cài đặt Splunk (Single-node)] (#install-splunk-single-node)
      1. [Cài đặt Splunk Indexer] (#install-splunk-indexer)
      1. [Cài đặt và cấu hình Splunk Forwarder] (#install-splunk-forwarder)
-   1. [Một số ứng dụng của Wazuh](#usecases)
-     1.[Phát hiện SSH brute-force attack](#detect-SSH-brute-force-attack)
-       1.[Tấn công] (#attack)
-       1.[Ở Wazuh server] (#in-wazuh-server)
-       1.[Ở Kibana] (#in-kibana)
-     1.[Thay đổi rule](#change-rules)
-     1.[Vượt qua tràn log](#survive-a-log-flood)
+1. [Một số ứng dụng của Wazuh](#usecases)
+   1.[Phát hiện SSH brute-force attack](#detect-SSH-brute-force-attack)
+     1.[Tấn công] (#attack)
+     1.[Ở Wazuh server] (#in-wazuh-server)
+     1.[Ở Kibana] (#in-kibana)
+   1.[Thay đổi rule](#change-rules)
+   1.[Vượt qua tràn log](#survive-a-log-flood)
 
 ## Mô hình triển khai<a name="architecture"></a>
 ### Không sử dụng Splunk<a name="noSplunk"></a>
