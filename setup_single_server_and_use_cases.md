@@ -291,7 +291,7 @@ systemctl start kibana.service
 
 ![image](https://user-images.githubusercontent.com/41882267/92096342-f79e9f80-ee00-11ea-80b2-cb126ddbabe2.png)
 
-### Cài đặt Monitored endpoint<a name="install-monitored-endpoint"></a>
+### Cài đặt Monitored endpoint<a name="install-monitered-endpoint"></a>
 
 - Từ menu bên trái http://192.168.182.160:5601, chọn Wazuh, sau đó chọn Total agents và nhập như sau. Kết quả thu được command để deploy agent:
 
@@ -432,7 +432,7 @@ Chọn y và nhập vào username: hungcao / password: 12345678
 
 ![image](https://user-images.githubusercontent.com/41882267/92312333-dbaa2200-efe9-11ea-8783-c74ec4e5e9cb.png)
 
-## Một số ứng dụng của Wazuh<a name="install-wazuh-app"></a>
+## Một số ứng dụng của Wazuh<a name="usecases"></a>
 ### Phát hiện SSH brute-force attack<a name="detect-ssh-brute-force-attack"></a>
 #### Tấn công<a name="attack"></a>
 - Thực hiện ssh vào Wazuh agent với 1 user không tồn tại bằng lệnh:
