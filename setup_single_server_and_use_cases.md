@@ -1,6 +1,31 @@
 # Cài đặt cơ bản wazuh với mô hình 1 server
-## Mô hình triển khai
-### Không sử dụng Splunk:
+## Mục lục
+1. [Mô hình triển khai](#architecture)
+   1. [Không sử dụng Splunk](#noSplunk)
+   1. [Sử dụng Splunk](#useSplunk)
+1. [Cài đặt](#install)
+   1. [Cài đặt Wazuh server](#install-wazuh-server)
+     1. [Cài đặt Wazuh manager](#install-wazuh-manager)
+     1. [Cài đặt Wazuh API](#install-wazuh-api)
+     1. [Cài đặt Filebeat](#install-filebeat)
+   1. [Cài đặt Elastic Stack](#install-elasticstack)
+     1. [Chuẩn bị](#prepare)
+     1. [Cài đặt Elasticsearch] (#install-elasticsearch)
+     1. [Cài đặt Kibana] (#install-kibana)
+   1. [Cài đặt Monitored endpoint] (#install-monitered-enpoint)
+   1. [Cài đặt Splunk (Single-node)] (#install-splunk-single-node)
+     1. [Cài đặt Splunk Indexer] (#install-splunk-indexer)
+     1. [Cài đặt và cấu hình Splunk Forwarder] (#install-splunk-forwarder)
+   1. [Một số ứng dụng của Wazuh](#usecases)
+      1.[Phát hiện SSH brute-force attack](#detect-SSH-brute-force-attack)
+        1.[Tấn công] (#attack)
+        1.[Ở Wazuh server] (#in-wazuh-server)
+        1.[Ở Kibana] (#in-kibana)
+      1.[Thay đổi rule](#change-rules)
+      1.[Vượt qua tràn log](#survive-a-log-flood)
+
+## Mô hình triển khai<a name="architecture"></a>
+### Không sử dụng Splunk<a name="noSplunk"></a>
 ![image](https://user-images.githubusercontent.com/41882267/92073650-6e767100-edde-11ea-9e45-cd389af44b5b.png)
 
 Để thực hiện như mô hình, chuẩn bị 2 máy ảo trên VMWare:
@@ -28,7 +53,7 @@
   
   Network interface card: NAT
 
-### Sử dụng Splunk:
+### Sử dụng Splunk<a name="useSplunk"></a>
 ![image](https://user-images.githubusercontent.com/41882267/92312408-70148480-efea-11ea-9fed-1d71a4d88d2b.png)
 
 Để triển khai mô hình này, ngoài chuẩn bị 2 máy ảo như trên thì cần chuẩn bị thêm 1 máy ảo để chạy Splunk.
@@ -45,9 +70,9 @@
   
   Network interface card: NAT
   
-## Cài đặt
-### Cài đặt Wazuh server:
-#### Cài đặt Wazuh manager
+## Cài đặt<a name="install"></a>
+### Cài đặt Wazuh server<a name="install-wazuh-server"></a>
+#### Cài đặt Wazuh manager<a name="install-wazuh-manager"></a>
 - Chuyển vào chế độ user root.
 - Cài đặt các công cụ phát triển và trình biên dịch bằng lệnh:
 ```
@@ -102,7 +127,7 @@ Wazuh-manager đã hoạt động:
 
 ![image](https://user-images.githubusercontent.com/41882267/92078814-1ee97280-ede9-11ea-9ebc-beea1bd2e7b6.png)
 
-#### Cài đặt Wazuh API
+#### Cài đặt Wazuh API<a name="install-wazuh-api"></a>
 
 - Cài đặt NodeJS bằng lệnh:
 ```
