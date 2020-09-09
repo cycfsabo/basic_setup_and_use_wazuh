@@ -24,6 +24,10 @@
       1. [Ở Kibana](#in-kibana)
    1. [Thay đổi rule](#change-rules)
    1. [Vượt qua tràn log](#survive-a-log-flood)
+      1. [Cấu hình Wazuh agent client buffer trên linux-agent](#buffer)
+      1. [Giảm mức cảnh báo log tối thiểu](#decrease-alert)
+      1. [Tạo 1 log flood trên centos agent](#create-a-log-flood-on-centos)
+      1. [Đưa setting về mặc định](#back-to-default)
 
 ## Mô hình triển khai<a name="architecture"></a>
 ### Không sử dụng Splunk<a name="noSplunk"></a>
@@ -381,7 +385,7 @@ curl -o SplunkAppForWazuh.tar.gz https://packages.wazuh.com/3.x/splunkapp/wazuha
 ![image](https://user-images.githubusercontent.com/41882267/92311889-7f450380-efe5-11ea-86b6-9cadd93cf4bd.png)
 ![image](https://user-images.githubusercontent.com/41882267/92311897-94ba2d80-efe5-11ea-8f11-41c7baf4d704.png)
 
-#### Cài đặt và cấu hình Splunk Forwarder:
+#### Cài đặt và cấu hình Splunk Forwarder<a name="install-splunk-forwarder"></a>
 
 - Chuyển qua máy ảo Wazuh Server. 
 - Tải về Splunk Forwarder v8.0.5 package từ trang chủ.
@@ -428,27 +432,27 @@ Chọn y và nhập vào username: hungcao / password: 12345678
 
 ![image](https://user-images.githubusercontent.com/41882267/92312333-dbaa2200-efe9-11ea-8783-c74ec4e5e9cb.png)
 
-## Một số ứng dụng của Wazuh:
-### Phát hiện SSH brute-force attack:
-#### Tấn công
+## Một số ứng dụng của Wazuh<a name="install-wazuh-app"></a>
+### Phát hiện SSH brute-force attack<a name="detect-ssh-brute-force-attack"></a>
+#### Tấn công<a name="attack"></a>
 - Thực hiện ssh vào Wazuh agent với 1 user không tồn tại bằng lệnh:
 ```
 ssh abc@192.168.182.161
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92318877-8d723e80-f03c-11ea-830b-6099ab13470e.png)
 
-#### Ở Wazuh server
+#### Ở Wazuh server<a name="in-wazuh-server"></a>
 - Wazuh server sẽ lập tức ghi nhận:
 
 ![image](https://user-images.githubusercontent.com/41882267/92318899-be527380-f03c-11ea-9a0d-690143f20d58.png)
 
-#### Ở Kibana:
+#### Ở Kibana<a name="in-kibana"></a>
 - Vào Kibana > Discover và search "abc" trong wazuh alert cũng sẽ thấy có cảnh báo:
 
 ![image](https://user-images.githubusercontent.com/41882267/92320084-f495f000-f048-11ea-8c2b-5336b074c076.png)
 
 
-### Thay đổi rule:
+### Thay đổi rule<a name="change-rules"></a>
 - Vào Wazuh trên Kibana, vào Management, chọn Rules
 
 ![image](https://user-images.githubusercontent.com/41882267/92321440-2b253800-f054-11ea-824d-9c325a7955bc.png)
@@ -476,8 +480,8 @@ ssh abc@192.168.182.161
 - Thực hiện SSH với username đúng nhưng password sai vào Agent và kiểm tra log ở Kibana sẽ thấy log gần nhất có rule level là 7:
 ![image](https://user-images.githubusercontent.com/41882267/92323205-02576f80-f061-11ea-8362-1f5396a24ebb.png)
 
-### Vượt qua tràn log:
-#### Cấu hình Wazuh agent client buffer trên linux-agent:
+### Vượt qua tràn log<a name="survive-a-log-flood"></a>
+#### Cấu hình Wazuh agent client buffer trên linux-agent<a name="buffer"></a>
 - Tạo một agent chạy centos để thực hiện lab.
 - Ở lab này, ta sẽ giới hạn 50 EPS (events per second) để dễ dàng mô phỏng việc bị tràn log. Sửa file /var/ossec/etc/ossec.conf trên linux agent bằng lệnh và thêm vào đoạn như trong hình:
 ```
@@ -489,7 +493,7 @@ nano -c /var/ossec/etc/ossec.conf
 ```
 systemctl restart wazuh-agent
 ```
-#### Giảm mức cảnh báo log tối thiểu:
+#### Giảm mức cảnh báo log tối thiểu<a name="decrease-alert"></a>
 - Sửa file /var/ossec/etc/ossec.conf ở Wazuh server (giảm <log_alert_level> từ 3 về 1):
 ```
 nano -c /var/ossec/etc/ossec.conf
@@ -501,7 +505,7 @@ nano -c /var/ossec/etc/ossec.conf
 systemctl restart wazuh-manager
 ```
 
-#### Tạo 1 log flood trên centos agent
+#### Tạo 1 log flood trên centos agent<a name="create-a-log-flood-on-centos"></a>
 
 - Cài đặt netcat trên centos bằng lệnh:
 ```
@@ -525,7 +529,7 @@ makeflood
 ![image](https://user-images.githubusercontent.com/41882267/92380353-4155f580-f133-11ea-89f2-c08109a57496.png)
 
 
-#### Đưa setting về mặc định:
+#### Đưa setting về mặc định<a name="back-to-default"></a>
 - Trên centos agent, sửa lại file /var/ossec/etc/ossec.conf
 
 ![image](https://user-images.githubusercontent.com/41882267/92381101-6bf47e00-f134-11ea-8bac-dc72b12828dd.png)
