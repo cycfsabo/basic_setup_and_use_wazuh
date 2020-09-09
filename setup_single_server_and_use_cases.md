@@ -12,7 +12,7 @@
       1. [Chuẩn bị](#prepare)
       1. [Cài đặt Elasticsearch](#install-elasticsearch)
       1. [Cài đặt Kibana](#install-kibana)
-   1. [Cài đặt Monitored endpoint](#install-monitered-enpoint)
+   1. [Cài đặt Monitored endpoint](#install-monitered-endpoint)
    1. [Cài đặt Splunk (Single-node)](#install-splunk-single-node)
       1. [Cài đặt Splunk Indexer](#install-splunk-indexer)
       1. [Cài đặt và cấu hình Splunk Forwarder](#install-splunk-forwarder)
