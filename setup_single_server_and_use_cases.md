@@ -16,6 +16,7 @@
    1. [Cài đặt Splunk (Single-node)](#install-splunk-single-node)
       1. [Cài đặt Splunk Indexer](#install-splunk-indexer)
       1. [Cài đặt và cấu hình Splunk Forwarder](#install-splunk-forwarder)
+      1. [Cài đặt Wazuh app cho Splunk](#install-wazuh-app)
 1. [Một số ứng dụng của Wazuh](#usecases)
    1. [Phát hiện SSH brute-force attack](#detect-SSH-brute-force-attack)
       1. [Tấn công](#attack)
@@ -147,7 +148,7 @@ systemctl status wazuh-api
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92090251-67a92780-edf9-11ea-99a3-9bf65293152d.png)
 
-#### Cài đặt Filebeat
+#### Cài đặt Filebeat<a name="install-filebeat"></a>
 - Thêm vào Elastic repository và GPG key của nó bằng các lệnh:
 ```
 apt-get install curl apt-transport-https
@@ -193,8 +194,8 @@ systemctl status filebeat.service
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92093757-e86a2280-edfd-11ea-86cd-86825795b327.png)
 
-### Cài đặt Elastic Stack
-#### Chuẩn bị
+### Cài đặt Elastic Stack<a name="install-elasticstack"></a>
+#### Chuẩn bị<a name="prepare"></a>
 - Thêm Elastic repository và GPG key của nó bằng các lệnh:
 ```
 apt-get install curl apt-transport-https
@@ -204,7 +205,7 @@ apt-get update
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92090948-4432ac80-edfa-11ea-81fe-fcb6fea04e2e.png)
 
-#### Cài đặt Elasticsearch
+#### Cài đặt Elasticsearch<a name="install-elasticsearch"></a>
 - Cài đặt Elasticsearch package bằng lệnh:
 ```
 apt-get install elasticsearch=7.9.0
@@ -242,7 +243,7 @@ filebeat setup --index-management -E setup.template.json.enabled=false
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92093882-09327800-edfe-11ea-9f70-99202270ebb9.png)
 
-#### Cài đặt Kibana:
+#### Cài đặt Kibana<a name="install-kibana"></a>
 - Cài đặt Kibana package bằng lệnh:
 ```
 apt-get install kibana=7.9.0
@@ -286,7 +287,7 @@ systemctl start kibana.service
 
 ![image](https://user-images.githubusercontent.com/41882267/92096342-f79e9f80-ee00-11ea-80b2-cb126ddbabe2.png)
 
-### Cài đặt Monitored endpoint:
+### Cài đặt Monitored endpoint<a name="install-monitored-endpoint"></a>
 
 - Từ menu bên trái http://192.168.182.160:5601, chọn Wazuh, sau đó chọn Total agents và nhập như sau. Kết quả thu được command để deploy agent:
 
@@ -305,8 +306,8 @@ curl -so wazuh-agent.deb https://packages.wazuh.com/3.x/apt/pool/main/w/wazuh-ag
 ![image](https://user-images.githubusercontent.com/41882267/92103537-4ac92000-ee0a-11ea-978e-9c78a4ddfbb7.png)
 
 
-### Cài đặt Splunk (Single-node)
-#### Cài đặt Splunk Indexer
+### Cài đặt Splunk (Single-node)<a name="install-splunk-single-node"></a>
+#### Cài đặt Splunk Indexer<a name="install-splunk-indexer"></a>
 
 - Download Splunk v8.0.4 package từ trang chủ.
 
@@ -351,7 +352,7 @@ Vào địa chỉ http://192.168.182.162:8000/ với 192.168.182.162 là địa 
 ![image](https://user-images.githubusercontent.com/41882267/92311470-794d2380-efe1-11ea-9bda-7254ea1b3c75.png)
 
 
-#### Cài đặt Wazuh app cho Splunk:
+#### Cài đặt Wazuh app cho Splunk<a name="install-wazuh-app"></a>
 
 - Tải xuống phiên bản Wazuh app mới nhất cho Splunk:
 ```
