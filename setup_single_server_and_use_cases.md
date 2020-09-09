@@ -156,7 +156,7 @@ Thay thế YOUR_ELASTIC_SERVER_IP bằng 0.0.0.0
 
 ![image](https://user-images.githubusercontent.com/41882267/92093458-93c6a780-edfd-11ea-9fb5-d11cf7d0541d.png)
 
-- Enable và start the Filebeat service:
+- Enable và start Filebeat service:
 ```
 systemctl daemon-reload
 systemctl enable filebeat.service
@@ -191,8 +191,11 @@ apt-get install elasticsearch=7.9.0
 nano -c /etc/elasticsearch/elasticsearch.yml
 ```
 Bỏ comment dòng 23, 55, 59, 72. 
+
 Sửa dòng 55 thành: "network.host: 0.0.0.0"
+
 Sửa dòng 72 thành: "cluster.initial_master_nodes: ["node-1"]"
+
 Sau đó lưu lại.
 
 ![image](https://user-images.githubusercontent.com/41882267/92091665-421d1d80-edfb-11ea-8442-a6205e001084.png)
@@ -238,13 +241,16 @@ sudo -u kibana bin/kibana-plugin install https://packages.wazuh.com/wazuhapp/waz
 nano -c /etc/kibana/kibana.yml
 ```
 Bỏ comment các dòng 2, 7, 28. 
+
 Sửa dòng 7 thành: "server.host: "0.0.0.0" "
+
 Sửa dòng 28 thành: "elasticsearch.hosts: ["http://localhost:9200"]"
-Sau đó lưu lại
+
+Sau đó lưu lại.
 
 ![image](https://user-images.githubusercontent.com/41882267/92095677-28320980-ee00-11ea-9e20-e3cfcaac4a96.png)
 
-- Enable và start the Kibana service bằng các lệnh:
+- Enable và start Kibana service bằng các lệnh:
 ```
 systemctl daemon-reload
 systemctl enable kibana.service
@@ -257,7 +263,7 @@ systemctl start kibana.service
 
 ### Cài đặt Monitored endpoint:
 
-- Từ menu bên trái http://192.168.182.160:5601, chọn Wazuh, sau đó chon Total agents và nhập như sau:
+- Từ menu bên trái http://192.168.182.160:5601, chọn Wazuh, sau đó chọn Total agents và nhập như sau. Kết quả thu được command để deploy agent:
 
 ![image](https://user-images.githubusercontent.com/41882267/92102997-8e6f5a00-ee09-11ea-888a-1666672d1c56.png)
 ![image](https://user-images.githubusercontent.com/41882267/92103052-a050fd00-ee09-11ea-91b8-e3da9f392295.png)
@@ -292,7 +298,7 @@ dpkg --install splunk-8.0.6-152fb4b2bb96-linux-2.6-amd64.deb
 ```
 curl -so /opt/splunk/etc/system/local/indexes.conf https://raw.githubusercontent.com/wazuh/wazuh/v3.13.1/extensions/splunk/peer-indexes.conf
 ```
-- Tạo file ìnputs.conf:
+- Tạo file inputs.conf:
 ```
 curl -so /opt/splunk/etc/system/local/inputs.conf https://raw.githubusercontent.com/wazuh/wazuh/v3.13.1/extensions/splunk/peer-inputs.conf
 ```
@@ -302,12 +308,14 @@ curl -so /opt/splunk/etc/system/local/inputs.conf https://raw.githubusercontent.
 ```
 ![image](https://user-images.githubusercontent.com/41882267/92311413-004dcc00-efe1-11ea-8587-8e9da5a14269.png)
 
-Nhập y
+Nhập y.
+
 Sau đó nhập admin username: hungcao / password: 12345678
 
 ![image](https://user-images.githubusercontent.com/41882267/92311458-64709000-efe1-11ea-9cf8-55f763841a7d.png)
 
 Vào địa chỉ http://192.168.182.162:8000/ với 192.168.182.162 là địa chỉ ip của máy ảo để kiểm tra:
+
 ![image](https://user-images.githubusercontent.com/41882267/92311506-c29d7300-efe1-11ea-9b60-98b261fe6e34.png)
 
 
@@ -394,7 +402,7 @@ Chọn y và nhập vào username: hungcao / password: 12345678
 
 ![image](https://user-images.githubusercontent.com/41882267/92312333-dbaa2200-efe9-11ea-8783-c74ec4e5e9cb.png)
 
-## Use cases:
+## Một số ứng dụng của Wazuh:
 ### Phát hiện SSH brute-force attack:
 #### Tấn công
 - Thực hiện ssh vào Wazuh agent với 1 user không tồn tại bằng lệnh:
