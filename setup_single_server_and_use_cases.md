@@ -1,4 +1,4 @@
-# Cài đặt và sử dụng cơ bản wazuh với mô hình 1 server
+# Cài đặt và sử dụng cơ bản wazuh với mô hình một server
 ## Mục lục
 1. [Mô hình triển khai](#architecture)
    1. [Không sử dụng Splunk](#noSplunk)
